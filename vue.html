@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue</title>
+	<link rel="stylesheet" href="swiper.css">
+	<!--<script src="jquery-1.11.1.min.js"></script> -->
+	<script src="vue.js"></script>
+	<script src="swiper.js"></script>
+</head>
+<body>
+	<!-- ******************swiper start******************* -->
+	<div class="swiperBox" style="width:600px; height:200px">
+		<div class="swiper-container" style="width:600px; height:200px">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide">Slide 1</div>
+		        <div class="swiper-slide">Slide 2</div>
+		        <div class="swiper-slide">Slide 3</div>
+		    </div>
+		    <!-- 如果需要分页器 -->
+		    <div class="swiper-pagination"></div>
+		    
+		    <!-- 如果需要导航按钮 -->
+		    <div class="swiper-button-prev"></div>
+		    <div class="swiper-button-next"></div>
+		    
+		    <!-- 如果需要滚动条 -->
+		    <div class="swiper-scrollbar"></div>
+		</div>
+	</div>
+	<script>        
+		var mySwiper = new Swiper ('.swiper-container', {
+			direction: 'vertical',
+			// loop: true,
+
+			// 如果需要分页器
+			// pagination: '.swiper-pagination',
+
+			// 如果需要前进后退按钮
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+
+			// 如果需要滚动条
+			// scrollbar: '.swiper-scrollbar',
+
+
+
+			pagination: '.swiper-pagination',
+			paginationClickable: true,
+			// scrollbarHide:true
+			scrollbar:null
+		})        
+	</script>
+	<!-- ******************swiper end******************* -->
+	<div id="app">
+	    {{ abc }}
+		<input type="text" v-model='abc'>
+	</div>
+
+	<div id="app2">
+		<span v-bind:title="message">请看鼠标滑过的提示语</span>
+	</div>
+
+	<div id="app3">
+		<p v-if="red">输出red</p>
+		<p v-if="yellow">输出yellow</p>
+		<p v-if="green">输出green</p>
+	</div>
+ 
+	<div id="app4">
+		<ul>
+			<li v-for="todo in todos">
+				{{todo.text}}
+			</li>
+		</ul>
+	</div>
+
+	<div id="app5">
+		<ul>
+			<li v-for="a in b">{{a.text}}</li>
+		</ul>
+	</div>
+
+	<div id="app6">
+		<ul>
+			<li v-for="car in cars">
+				{{car.color}}
+			</li>
+		</ul>
+	</div>
+
+	<div id="app7">
+		<p>{{message}}</p>
+		<p>{{text}}</p>
+		<button v-on:click="clicker">click</button>
+	</div>
+
+	<div id="app8">
+		<p>{{text}}</p>
+		<input v-model="text" />
+	</div>
+
+	<div id="app9">
+		<ol>
+			<todo-item v-for="item in t" v-bind:todo="item"></todo-item>
+		</ol>
+	</div>
+
+
+	<!-- ******************开始****************** -->
+
+	<div id="vm">
+		<p>{{text}}</p>
+	</div>
+
+	<!-- ******************-结束****************** -->
+	<div id="app0">
+		<p>1、{{message}}</p>
+		<p>2、{{reMessage}}</p>
+	</div>
+
+	<div id="vm1">{{fullName}}</div>
+
+	<div id="watch">
+		<p>请输入问题：<input type="text" v-model="question" /></p>
+		<p>{{answer}}</p>
+	</div>
+
+	<!-- ***********class与style绑定 start****************** -->
+	<div id="style">
+		<div class="static" v-bind:class="{bold:isBold,color:red}">class与style的绑定</div>
+	</div>
+
+	<div id="style-test">
+		<p class="test" v-bind:class="{size:big,background:green}">class与style的测试</p>
+	</div>
+
+	<div id="style2">
+		<p class="test" v-bind:class="classObject">   class-style 绑定数据里的一个对象</p>
+	</div>
+
+	<div id="style3">
+		<p class="test" v-bind:class="classObject">绑定返回值</p>
+	</div>
+
+	<!-- style绑定 -->
+	<div id="style11">
+		<div v-bind:style='{color:inColor,fontSize:inFontsize + "px"}'>style的绑定</div>
+	</div>
+
+	<!-- ***********class与style绑定 end****************** -->
+	<!-- ***********v-if指令 start****************** -->
+	<div id="ok">
+		<h1 v-if="ok">if == ok</h1>
+		<h1 v-else>if no</h1>
+	</div>
+	<div id="ok1">
+		<template v-if="yes">
+			<p>v-if = yes</p>
+		</template>
+		<template v-else>
+			<p>v-else = no</p>
+		</template>
+	</div>
+	<div id="ok2">
+		<p v-if="a">a</p>
+		<!-- <p v-else-if="b">b</p>
+		<p v-else-if="c">c</p> -->
+		<p v-else="d">d</p>
+	</div>
+	<div id="form">
+		<p><label v-if="name">username</label><input type="text" placeholder="请输入用户名"></p>
+		<p><label v-else>pass</label><input type="text" placeholder="请输入密码"></p>
+	</div>
+
+	<!-- ***********v-if指令 end****************** -->
+	<!-- ***********v-for指令 start****************** -->
+	<ul id="v-for">
+		<li v-for="(item,index) in items">{{text}} - {{index}} - {{item.message}}</li>
+
+
+		<li v-for="(index,item) in items">{{index}} - {{text}} - {{item.message}}</li>
+	</ul>
+
+		<!-- 对象迭代 -->
+	<ul id="for-object">
+		<li v-for="(key,val) in object">{{key}}:{{val}}</li>
+	</ul>
+		<!-- 整数迭代 -->
+	<div id="zs">
+		<span v-for="n in 20">{{n}} </span>
+	</div>
+		<!-- 组件和v-for -->
+
+	<div id="todo-list">
+		<input type="text" 
+			v-model="newTodoText"
+			v-on:keyup.enter="addNewTodo"
+			placeholder="请输入新增项"	
+		/>
+		<ul>
+			<li 
+				is="todo-item"
+				v-for="(index,todo) in todos"
+				v-bind:title="todo"
+				v-on:remove="todos.splice(index,1)"
+			></li>
+		</ul>
+	</div>
+
+	<div id="filter">
+		<ul>
+			<li v-for="n in evenNumbers">{{n}}</li>
+		</ul>
+	</div>
+	<!-- ***********v-for指令 end****************** -->
+	<!-- ***********事件处理 start****************** -->
+	<div id="example-1">
+		<button v-on:click="counter += 1">点击加1</button>
+		<p>这个按钮被点击了{{counter}}次</p>
+
+	</div>
+
+	<div id="example-2">
+		<button v-on:click="clicker">点击-弹层</button>
+	</div>
+
+	<div id="example-3">
+		<button v-on:click="say('hi')">say hi</button>
+		<button v-on:click="say('what')">say what</button>
+	</div>
+
+		<!-- 事件修饰符 -->
+	<a v-on:click.stop="doThis" href="www.baidu.com">阻止点击事件a</a><br>
+	<a v-on:click.once="doThis">点击事件只会触发一次</a>
+	<form v-on:submit.prevent="onSubmit" action="">提交事件不再重载页面</form>
+	<a v-on:click.stop.prevent="doThat">修饰符可以串联</a>
+	<form v-on:submit.prevent>只有修饰符</form>
+	<div v-on:click.capture="doThis">添加事件侦听器时使用事件捕获模式</div>
+	<div v-on:click.self="doThat">...  只当事件在该元素本身（而不是子元素）触发时触发回调</div>
+
+
+		<!-- 按键修饰符 -->
+	<div id="eventEnter">
+		<input type="text" v-on:keyup.enter="submiter">
+	</div>
+	<!-- ***********事件处理 end****************** --><hr>
+	<h1>表单控件绑定</h1>
+	<!-- ***********表单控件绑定 start****************** -->
+		<!-- 基础用法 -->
+		<div id="form1">
+			<div>单文本</div>
+			<input type="text" v-model="message" placeholder="请输入" />
+			<span style="background:yellow">{{message}}</span>
+		</div>
+
+		<div id="form2">
+			<div>多行文本</div>
+			<textarea v-model="text" name="" id="" cols="30" rows="10"></textarea>
+			<div>{{text}}</div>
+		</div>
+		
+		<div id="checkbox" style="border:1px solid #ddd;margin-bottom:10px;">
+			<div>单个复选框</div>
+			<label>
+				<input type="checkbox" v-model="checked" />{{checked}}
+			</label>
+		</div>
+
+		<div id="checkbox2" style="border:1px solid #ddd;margin-bottom:10px;">
+			<div>多个复选框</div>
+			<label for="jack"><input type="checkbox" id="jack" value="jack" v-model="checknames">jack</label>
+			<label for="john"><input type="checkbox" id="john" value="john" v-model="checknames">john</label>
+			<label for="mike"><input type="checkbox" id="mike" value="mike" v-model="checknames">mike</label>
+			<p>选中的是{{checknames}}</p>
+		</div>
+
+		<div id="radio1" style="border:1px solid #ddd;margin-bottom:10px;">
+			<div>单选按钮</div>
+			<label for="radio-one"><input id="radio-one" name="sigle" value="one" type="radio" v-model="text" /> one</label>
+			<label for="radio-two"><input id="radio-two" name="sigle" value="two" type="radio" v-model="text" /> two</label>
+			<div>你选中的是{{text}}</div>
+		</div>
+
+		<div id="selected1" style="border:1px solid #ddd;margin-bottom:10px;">
+			<div>单选列表</div>
+			<select name="" id="" v-model="selecter">
+				<option value="a1" selected="selected">aaaaaaaaaaaaaaa</option>
+				<option value="b1">b</option>
+				<option value="c1">c</option>
+			</select>
+			<span>select选中的是{{selecter}}</span>
+		</div>
+
+		<div id="selected2" style="border:1px solid #ddd;margin-bottom:10px;">
+			<div>多选列表</div>
+			<select name="" id="" multiple="" v-model="selecteder2">
+				<option value="aa">aaaaaaaaaaa</option>
+				<option value="bb">b</option>
+				<option value="cc">c</option>
+			</select>
+			<span>select中选择的是{{selecteder2}}</span>
+		</div>
+
+		<div id="selected3" style="border:1px solid #ddd;margin-bottom:10px;">
+			<div>v-for循环渲染</div>
+			<select name="" id="" v-model="selecter3">
+				<option v-for="option in options" v-bind:value="option.value">
+					{{option.text}}
+				</option>
+			</select>
+			<span>选中的为{{selecter3}}</span>
+		</div>
+
+		<div id="bindValue" style="border:1px solid #ddd;margin-bottom:10px;">
+			<div>绑定value*********************v-bind:true-value="a" v-bind:false-value="b"*****************************</div>
+			<input type="radio" v-model="picked" value="a" />
+			<input type="checkbox" v-model="toggel" />
+			<select name="" id="" v-model="slt">
+				<option value="abc">ABC</option>
+			</select>
+			<input type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b" />
+			<span>{{toggle}}</span>
+		</div>
+
+		<div style="border:1px solid #ddd;margin-bottom:10px;">
+			<div>修饰符</div>
+			<p id="lazy">
+				lazy: <input type="text" v-model.lazy="msg" />
+				<span>输出input中的信息<span style="background:yellow">{{msg}}</span></span>
+			</p>
+			<p id="numb">
+				num: <input type="nummber" v-model.number="num" />
+				<span style="background:yellow">{{num}}</span>
+			</p>
+			<p id="trim">
+				trim: <input type="text" v-model.trim="trimer" />
+				<span style="background:yellow">{{trimer}}</span>
+			</p>
+
+		</div>
+
+		
+	<!-- **********表单控件绑定 end****************** --> 
+	<!-- **********组件 start****************** --> 
+	<div>----------------------使用组件------------------------------</div>
+	<div id="zc">
+		<mydiv></mydiv>
+	</div>
+	<!-- **********组件 end****************** --> 
+
+
+	<script type="text/javascript" src="./aa.js"></script>
+</body>
+</html>
+<style type="text/css">
+/**{
+	margin:0;
+	padding:0;
+}*/
+	.static{
+		font-size:20px;
+	}
+	.bold{
+		font-weight:bold;
+	}
+	.color{
+		color:red;
+	}
+	.size{
+		font-size:30px;
+	}
+	.background{
+		background:green;
+	}
+	.border{
+		border:1px solid red;
+	}
+</style>
